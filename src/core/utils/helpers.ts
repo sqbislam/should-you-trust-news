@@ -14,3 +14,13 @@ export function mapObject<T>(obj:T, callbackFn:(el:T[keyof T], key?:keyof T) => 
         }
         return out
 }
+
+/**
+ * 
+ * @param obj Object to be checked if empty
+ * @returns boolean | true if empty, false otherwise
+ */
+export function isEmptyObject (obj:Object){
+   for (var x in obj) { if (obj.hasOwnProperty(x))  return false; }
+   return true;
+}
