@@ -1,5 +1,4 @@
 import React from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
@@ -28,7 +27,7 @@ export default function CategorySelect(props:any) {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="demo-simple-select-helper-label">Category</InputLabel>
+     
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -38,7 +37,7 @@ export default function CategorySelect(props:any) {
           onChange={handleChange}
         >
           {mapObject(Categories, (val, key) => (
-            <MenuItem value={val}>{key}</MenuItem>
+            <MenuItem key={val} value={val}>{key}</MenuItem>
           ))}
          
         </Select>

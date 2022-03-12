@@ -1,8 +1,6 @@
 import { isEmptyObject } from "../utils/helpers";
 
-interface IHttpClient{
-    
-}
+
 interface IHttpConfig{
     queryParams?:{
         [key:string]:string;
@@ -32,8 +30,7 @@ function getAPIKeyUrl (pathname:string){
     return addQueryParams(pathname, {apiKey})
 }
 export class httpClient {
-    constructor () {
-    }
+
 
     static getEndpoint(pathname:string, config:IHttpConfig = {}){
         // Get constructed Endpoint

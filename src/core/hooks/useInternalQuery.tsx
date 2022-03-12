@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useQuery } from 'react-query';
 
 export const useInternalQuery = (key:string|string[], constructedEndpoint:string, options:any = {}) =>{
