@@ -2,6 +2,7 @@
 import { Skeleton, styled, Typography } from '@mui/material';
 import List from '@mui/material/List';
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import { apiEndpoints } from 'src/core/api/apiEndpoints';
 import { httpClient } from 'src/core/api/httpClient';
 import { useInternalQuery } from 'src/core/hooks/useInternalQuery';
@@ -38,10 +39,15 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
     );
 
     // React query fetch
-    const { isLoading, error, data } = useInternalQuery(
-      ["newsData", category],
-      endpointPath
-    );
+    // const { isLoading, error, data } = useInternalQuery(
+    //   "newsData",
+    //   endpointPath
+    // );
+
+     const { isLoading, data, error } = useQuery(
+       category,
+       () => fetch(endpointPath).then((res) => res.json())
+     );
     
 
 

@@ -26,9 +26,9 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({data}) => {
         <CardMedia
           component="img"
           height="140"
-          onError={addDefaultSrc}
+          // onError={addDefaultSrc}
           src={urlToImage ?? ""}
-          style={{ backgroundImage: `url(${background})` }}
+          // style={{ backgroundImage: `url(${background})` }}
           alt="article cover image"
         />
         <CardContent>

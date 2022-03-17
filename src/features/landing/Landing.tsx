@@ -21,7 +21,6 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
   const onQuestionChanged =(e:any)=>{
 
     numRef.current = numRef.current + 1
-    console.debug({ e, numRef });
     if(numRef.current >2){
       h(AppRoutes.dashboard.path)
     }
