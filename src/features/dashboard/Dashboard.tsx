@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { apiEndpoints } from 'src/core/api/apiEndpoints';
 import { httpClient } from 'src/core/api/httpClient';
-import { useInternalQuery } from 'src/core/hooks/useInternalQuery';
 import CategorySelect, { Categories } from './CategorySelect';
 import NewsItem from './NewsItem';
 
@@ -13,7 +12,7 @@ interface IDashboardProps {
 }
 
 const StatWrapper = styled("div")(
-  ({ theme }) => `
+  () => `
   display:flex;
   flex-direction: row;
   flex-wrap:wrap;
@@ -53,7 +52,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
 
     return (
       <div style={{ height: "100vh", width: "90vw" }}>
-        <h2>Your daily News! </h2>
+        <h2>Your daily News!</h2>
         <StatWrapper>
           {/* <SearchInput
             searchValue={searchValue}
