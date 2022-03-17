@@ -4,6 +4,7 @@ import List from '@mui/material/List';
 import React, { useState } from 'react';
 import { apiEndpoints } from 'src/core/api/apiEndpoints';
 import { httpClient } from 'src/core/api/httpClient';
+import useDebounce from 'src/core/hooks/useDebounce';
 import { useInternalQuery } from 'src/core/hooks/useInternalQuery';
 import CategorySelect, { Categories } from './CategorySelect';
 import NewsItem from './NewsItem';
@@ -27,27 +28,39 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
     // Variable states
     const [category, setCategory] = useState(Categories.General);
     const [searchValue, setSearchValue] = useState("");
+    const [debouncedSearchQuery, isDebouncing] = useDebounce(searchValue, 1000);
 
     // http endpoint builder
-    const endpointPath = httpClient.getEndpoint(apiEndpoints.topHeadlines.path, {queryParams:{country:"us",q:searchValue, category:`${category}`}});
+    const endpointPath = httpClient.getEndpoint(
+      apiEndpoints.topHeadlines.path,
+      {
+        queryParams: {
+          country: "us",
+          q: debouncedSearchQuery,
+          category: `${category}`,
+        },
+      }
+    );
 
     // React query fetch
-    const { isLoading, error, data } = useInternalQuery(["newsData", category], endpointPath);
+    const { isLoading, error, data } = useInternalQuery(
+      ["newsData", category],
+      endpointPath
+    );
     
 
     const onSearchValue = (e:any) => {
       e.preventDefault();
       setSearchValue(e.target.value)
     }
-    console.debug({ error });
     return (
       <div style={{ height: "100vh", width: "90vw" }}>
         <h2>Your daily News! </h2>
         <StatWrapper>
-          <SearchInput
+          {/* <SearchInput
             searchValue={searchValue}
             onSearchValue={onSearchValue}
-          />
+          /> */}
           <CategorySelect category={category} setCategory={setCategory} />
         </StatWrapper>
 
@@ -63,7 +76,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
               Something Went Wrong! Please try again later.
             </Typography>
           )}
-          {isLoading &&
+          {isLoading || isDebouncing &&
             Array(6)
               .fill(1)
               .map((i: any, idx) => (
