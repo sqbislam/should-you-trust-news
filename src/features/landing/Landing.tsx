@@ -13,11 +13,7 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
   const numRef = React.useRef(0)
   const h = useNavigate();
   
-  const { isLoading, error } = useQuery("repoData", () =>
-    fetch("https://api.github.com/repos/tannerlinsley/react-query").then(
-      (res) => res.json()
-    ),
-  );
+
   const onQuestionChanged =(e:any)=>{
 
     numRef.current = numRef.current + 1
@@ -25,10 +21,6 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
       h(AppRoutes.dashboard.path)
     }
   }
-
-  if (isLoading) return <h5>{"Loading..."}</h5>;
-
-  if (error) return<div>{"An error has occurred: " + (error as any)?.message}</div> 
 
   return (
     <div
