@@ -8,7 +8,6 @@ import useDebounce from 'src/core/hooks/useDebounce';
 import { useInternalQuery } from 'src/core/hooks/useInternalQuery';
 import CategorySelect, { Categories } from './CategorySelect';
 import NewsItem from './NewsItem';
-import SearchInput from './SearchInput';
 
 interface IDashboardProps {
 }
@@ -76,7 +75,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
               Something Went Wrong! Please try again later.
             </Typography>
           )}
-          {isLoading || isDebouncing &&
+          {(isLoading || isDebouncing )&&
             Array(6)
               .fill(1)
               .map((i: any, idx) => (

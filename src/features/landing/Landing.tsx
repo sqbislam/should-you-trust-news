@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+
 import { Widget } from '@typeform/embed-react';
 import React from 'react';
 import { useQuery } from 'react-query';
@@ -13,7 +13,7 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
   const numRef = React.useRef(0)
   const h = useNavigate();
   
-  const { isLoading, error, data } = useQuery("repoData", () =>
+  const { isLoading, error } = useQuery("repoData", () =>
     fetch("https://api.github.com/repos/tannerlinsley/react-query").then(
       (res) => res.json()
     ),
@@ -27,7 +27,6 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
     }
   }
 
-  const e = process.env.REACT_APP_NEWS_API_KEY
   if (isLoading) return <h5>{"Loading..."}</h5>;
 
   if (error) return<div>{"An error has occurred: " + (error as any)?.message}</div> 

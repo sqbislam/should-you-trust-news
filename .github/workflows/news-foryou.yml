@@ -19,6 +19,7 @@ jobs:
           heroku_app_name: "news-foryou"
           heroku_email: "sqbislam101@gmail.com"
           env_file: ".env"
+          buildpack: "https://github.com/mars/create-react-app-buildpack.git"
 
 
    
