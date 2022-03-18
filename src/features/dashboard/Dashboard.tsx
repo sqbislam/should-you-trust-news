@@ -2,11 +2,11 @@
 import { Skeleton, styled, Typography } from '@mui/material';
 import List from '@mui/material/List';
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
 import { apiEndpoints } from 'src/core/api/apiEndpoints';
 import { httpClient } from 'src/core/api/httpClient';
 import CategorySelect, { Categories } from './CategorySelect';
 import NewsItem from './NewsItem';
+import newsArticles  from "../../assets/news_articles";
 
 interface IDashboardProps {
 }
@@ -24,8 +24,9 @@ const StatWrapper = styled("div")(
 
 const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
     // Variable states
-    const [category, setCategory] = useState(Categories.General);
- 
+    const [category, setCategory] = useState<string>(Categories.General);
+    const error = false;
+    const isLoading =false;
     // http endpoint builder
     const endpointPath = httpClient.getEndpoint(
       apiEndpoints.topHeadlines.path,
@@ -43,10 +44,12 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
     //   endpointPath
     // );
 
-     const { isLoading, data, error } = useQuery(
-       category,
-       () => fetch(endpointPath).then((res) => res.json())
-     );
+    //  const { isLoading, data, error } = useQuery(
+    //    category,
+    //    () => fetch(endpointPath).then((res) => res.json())
+    //  );
+
+     const data:any = React.useMemo(() => ((newsArticles as any)?.[category]), [category]);
     
 
 
@@ -73,7 +76,7 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
               Something Went Wrong! Please try again later.
             </Typography>
           )}
-          {(isLoading)&&
+          {isLoading &&
             Array(6)
               .fill(1)
               .map((i: any, idx) => (
@@ -85,13 +88,11 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
                 />
               ))}
 
-          {!isLoading &&
-            data?.articles &&
-            data?.articles.map((news: any) => (
-              <NewsItem data={news} key={news.title} />
-            ))}
+          {data.map((news: any) => (
+            <NewsItem data={news} key={news.title} />
+          ))}
 
-          {data?.articles && data.articles.length === 0 && (
+          {data && data.length === 0 && (
             <Typography style={{ gridRow: "span 1 / -1" }}>
               No results found! Try a different search.
             </Typography>
