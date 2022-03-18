@@ -1,6 +1,5 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Tooltip, Typography } from '@mui/material';
 import * as React from 'react';
-import background from "../../assets/news-placeholder.jpg";
 interface INewsItemProps {
     data?:any
 }
@@ -17,12 +16,12 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({data}) => {
       urlToImage,
     } = data;
     
-    function addDefaultSrc(ev: any) {
-      ev.target.onerror = null; // prevents looping
-      ev.target.src = `url(${background})`;
-    }
+    // function addDefaultSrc(ev: any) {
+    //   ev.target.onerror = null; // prevents looping
+    //   ev.target.src = `url(${background})`;
+    // }
     return (
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 350, marginLeft: "auto", marginRight: "auto" }}>
         <CardMedia
           component="img"
           height="140"
@@ -32,14 +31,30 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({data}) => {
           alt="article cover image"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="div"
+            style={{ textAlign: "initial" }}
+          >
             {title}
           </Typography>
-          <p dangerouslySetInnerHTML={{ __html: author }} />
-          <Typography variant="body2" color="text.secondary">
+          <p
+            dangerouslySetInnerHTML={{ __html: author }}
+            style={{ textAlign: "initial" }}
+          />
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            style={{ textAlign: "initial" }}
+          >
             {description}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            style={{ textAlign: "initial" }}
+          >
             {content}
           </Typography>
         </CardContent>

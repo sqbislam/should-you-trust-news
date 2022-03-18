@@ -17,6 +17,7 @@ export default function ColorToggleButton(props:any) {
       color="primary"
       value={category}
       exclusive
+      style={{flexWrap:"wrap"}}
       onChange={handleChange}
     >
       {mapObject(Categories, (val, key) => (

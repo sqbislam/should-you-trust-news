@@ -1,5 +1,4 @@
 
-import { Paper } from '@mui/material';
 import React from 'react';
 import { QueryClientProvider } from 'react-query';
 import './App.css';

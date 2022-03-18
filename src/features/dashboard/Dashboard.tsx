@@ -2,8 +2,6 @@
 import { Skeleton, styled, Typography } from '@mui/material';
 import List from '@mui/material/List';
 import React, { useState } from 'react';
-import { apiEndpoints } from 'src/core/api/apiEndpoints';
-import { httpClient } from 'src/core/api/httpClient';
 import { Categories } from './CategorySelect';
 import NewsItem from './NewsItem';
 import newsArticles  from "../../assets/news_articles";
@@ -30,15 +28,15 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
     const error = false;
     const isLoading =false;
     // http endpoint builder
-    const endpointPath = httpClient.getEndpoint(
-      apiEndpoints.topHeadlines.path,
-      {
-        queryParams: {
-          country: "us",
-          category: `${category}`,
-        },
-      }
-    );
+    // const endpointPath = httpClient.getEndpoint(
+    //   apiEndpoints.topHeadlines.path,
+    //   {
+    //     queryParams: {
+    //       country: "us",
+    //       category: `${category}`,
+    //     },
+    //   }
+    // );
 
     // React query fetch
     // const { isLoading, error, data } = useInternalQuery(
