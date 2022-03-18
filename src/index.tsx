@@ -6,13 +6,21 @@ import { store } from "./config/store";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import { createTheme, ThemeProvider } from "@mui/material";
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+  
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Provider store={store}>
-        <App />
+        <ThemeProvider theme={darkTheme}>
+          <App />
+        </ThemeProvider>
       </Provider>
     </Router>
   </React.StrictMode>,

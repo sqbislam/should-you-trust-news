@@ -4,9 +4,10 @@ import List from '@mui/material/List';
 import React, { useState } from 'react';
 import { apiEndpoints } from 'src/core/api/apiEndpoints';
 import { httpClient } from 'src/core/api/httpClient';
-import CategorySelect, { Categories } from './CategorySelect';
+import { Categories } from './CategorySelect';
 import NewsItem from './NewsItem';
 import newsArticles  from "../../assets/news_articles";
+import ColorToggleButton from './ToggleButton';
 
 interface IDashboardProps {
 }
@@ -14,6 +15,7 @@ interface IDashboardProps {
 const StatWrapper = styled("div")(
   () => `
   display:flex;
+  position:relative;
   flex-direction: row;
   flex-wrap:wrap;
   align-items:center;
@@ -50,18 +52,31 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
     //  );
 
      const data:any = React.useMemo(() => ((newsArticles as any)?.[category]), [category]);
-    
-
 
     return (
       <div style={{ height: "100vh", width: "90vw" }}>
-        <h2>Your daily News!</h2>
+        <Typography variant="h3" color="textPrimary" style={{padding:"1em"}}>Your daily News!</Typography>
         <StatWrapper>
           {/* <SearchInput
             searchValue={searchValue}
             onSearchValue={onSearchValue}
           /> */}
-          <CategorySelect category={category} setCategory={setCategory} />
+
+          <ColorToggleButton category={category} setCategory={setCategory} />
+          <Typography
+            style={{
+              justifySelf: "flex-end",
+              width: "15em",
+              margin: "1em 0px",
+            }}
+            color="textPrimary"
+          >
+            Click on{" "}
+            <Typography component="span" color="primary">
+              LEARN MORE
+            </Typography>{" "}
+            to get details about source
+          </Typography>
         </StatWrapper>
 
         <List
