@@ -49,7 +49,23 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
     //    () => fetch(endpointPath).then((res) => res.json())
     //  );
 
-     const data:any = React.useMemo(() => ((newsArticles as any)?.[category]), [category]);
+    const data:any = React.useMemo(() => ((newsArticles as any)?.[category]), [category]);
+    let sources: any = [];
+
+    if (newsArticles) {
+      Object.values(newsArticles).forEach((arr)=>{
+         arr.forEach((d: any) => {
+           let s = d?.source?.name as any;
+           if (s) {
+             sources.push(s.toLowerCase());
+           }
+         });
+
+      });
+     
+    }
+
+    console.debug({sources: new Set(sources)})
 
     return (
       <div style={{ height: "100vh", width: "90vw" }}>

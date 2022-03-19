@@ -63,6 +63,7 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({data}) => {
             <Button size="small">Full Article</Button>
           </a>
           <Tooltip
+            disableFocusListener
             title={
               <div>
                 <Typography>{source?.name}</Typography>
