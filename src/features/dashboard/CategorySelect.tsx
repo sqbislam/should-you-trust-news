@@ -7,9 +7,7 @@ import { mapObject } from "src/core/utils/helpers";
 
 export const Categories = {
   Business: "business",
-  General: "general",
   Health: "health",
-  Technology: "technology",
 };
 
 export default function CategorySelect(props: any) {

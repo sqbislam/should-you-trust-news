@@ -21,7 +21,7 @@ const StatWrapper = styled("div")(
 
 const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
   // Variable states
-  const [category, setCategory] = useState<string>(Categories.General);
+  const [category, setCategory] = useState<string>(Categories.Health);
   const error = false;
   const isLoading = false;
   // http endpoint builder
