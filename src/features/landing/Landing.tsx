@@ -1,6 +1,5 @@
 import { Widget } from "@typeform/embed-react";
 import React from "react";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "src/core/routes/routes";
 
@@ -34,14 +33,6 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = (props) => {
         className="my-form"
         onQuestionChanged={onQuestionChanged}
       />
-
-      {/* <div>
-        <h1>{data.name}</h1>
-        <p>{data.description}</p>
-        <strong>👀 {data.subscribers_count}</strong>{" "}
-        <strong>✨ {data.stargazers_count}</strong>{" "}
-        <strong>🍴 {data.forks_count}</strong>
-      </div> */}
     </div>
   );
 };

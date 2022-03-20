@@ -5,20 +5,15 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { mapObject } from "src/core/utils/helpers";
 
-
 export const Categories = {
-    Business:"business",
-    Sports:"sports",
-    General:"general",
-    Health:"health",
-    Science:"science",
-    Technology:"technology",
-    Entertainment:"entertainment"
-}
+  Business: "business",
+  General: "general",
+  Health: "health",
+  Technology: "technology",
+};
 
-export default function CategorySelect(props:any) {
-    
-  const { category, setCategory } = props
+export default function CategorySelect(props: any) {
+  const { category, setCategory } = props;
 
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
@@ -27,7 +22,6 @@ export default function CategorySelect(props:any) {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-     
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -37,9 +31,10 @@ export default function CategorySelect(props:any) {
           onChange={handleChange}
         >
           {mapObject(Categories, (val, key) => (
-            <MenuItem key={val} value={val}>{key}</MenuItem>
+            <MenuItem key={val} value={val}>
+              {key}
+            </MenuItem>
           ))}
-         
         </Select>
         <FormHelperText>Select Category</FormHelperText>
       </FormControl>
