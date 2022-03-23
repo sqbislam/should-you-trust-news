@@ -1,4 +1,5 @@
 
+import PreLanding from "src/features/landing/Pre-Landing";
 import Counter from "../../features/counter/Counter";
 import Dashboard from "../../features/dashboard/Dashboard";
 import LandingPage from "../../features/landing/Landing";
@@ -19,6 +20,11 @@ export const AppRoutes:{[key:string]:IAppRoute} = {
         path: "/dashboard",
         isPublic:true,
         component:Dashboard
+    },
+    postLanding:{
+        path:"/landing",
+        isPublic:true,
+        component:PreLanding
     },
     counter:{
         path:"/counter",
