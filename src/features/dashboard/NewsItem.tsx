@@ -8,9 +8,13 @@ import {
 import * as React from "react";
 interface INewsItemProps {
     data?: any;
+    isFullLinkVisible?: boolean;
 }
 
-const NewsItem: React.FunctionComponent<INewsItemProps> = ({ data }) => {
+const NewsItem: React.FunctionComponent<INewsItemProps> = ({
+    data,
+    isFullLinkVisible,
+}) => {
     const { author, title, source, description, content, url, urlToImage } =
         data;
 
@@ -60,10 +64,16 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({ data }) => {
                         style={{ textAlign: "initial" }}
                     >
                         {description}
-                        {content}
-                        <a href={url} target="_blank" rel="noopener noreferrer">
-                            <Button size="small">Full Article</Button>
-                        </a>
+
+                        {isFullLinkVisible && (
+                            <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Button size="small">Full Article</Button>
+                            </a>
+                        )}
                     </Typography>
                 </div>
             </CardContent>

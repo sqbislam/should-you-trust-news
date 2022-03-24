@@ -132,10 +132,10 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
                             margin: 0,
                         }}
                     >
-                        <NewsItem data={data[5]} />
-                        <NewsItem data={data[6]} />
-                        <NewsItem data={data[7]} />
-                        <NewsItem data={data[8]} />
+                        <NewsItem data={data[5]} isFullLinkVisible />
+                        <NewsItem data={data[6]} isFullLinkVisible />
+                        <NewsItem data={data[7]} isFullLinkVisible />
+                        <NewsItem data={data[8]} isFullLinkVisible />
 
                         <Divider />
                         <Paper
