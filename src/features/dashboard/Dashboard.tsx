@@ -9,7 +9,7 @@ import ColorToggleButton from "./ToggleButton";
 interface IDashboardProps {}
 
 const StatWrapper = styled("div")(
-  () => `
+    () => `
   display:flex;
   position:relative;
   flex-direction: row;
@@ -20,107 +20,108 @@ const StatWrapper = styled("div")(
 );
 
 const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
-  // Variable states
-  const [category, setCategory] = useState<string>(Categories.Health);
-  const error = false;
-  const isLoading = false;
-  // http endpoint builder
-  // const endpointPath = httpClient.getEndpoint(
-  //   apiEndpoints.topHeadlines.path,
-  //   {
-  //     queryParams: {
-  //       country: "us",
-  //       category: `${category}`,
-  //     },
-  //   }
-  // );
+    // Variable states
+    const [category, setCategory] = useState<string>(Categories.Health);
+    const error = false;
+    const isLoading = false;
+    // http endpoint builder
+    // const endpointPath = httpClient.getEndpoint(
+    //   apiEndpoints.topHeadlines.path,
+    //   {
+    //     queryParams: {
+    //       country: "us",
+    //       category: `${category}`,
+    //     },
+    //   }
+    // );
 
-  // React query fetch
-  // const { isLoading, error, data } = useInternalQuery(
-  //   "newsData",
-  //   endpointPath
-  // );
+    // React query fetch
+    // const { isLoading, error, data } = useInternalQuery(
+    //   "newsData",
+    //   endpointPath
+    // );
 
-  //  const { isLoading, data, error } = useQuery(
-  //    category,
-  //    () => fetch(endpointPath).then((res) => res.json())
-  //  );
+    //  const { isLoading, data, error } = useQuery(
+    //    category,
+    //    () => fetch(endpointPath).then((res) => res.json())
+    //  );
 
-  const data: any = React.useMemo(
-    () => (newsArticles as any)?.[category],
-    [category]
-  );
-  let sources: any = [];
+    const data: any = React.useMemo(
+        () => (newsArticles as any)?.[category],
+        [category]
+    );
+    let sources: any = [];
 
-  if (newsArticles) {
-    Object.values(newsArticles).forEach((arr) => {
-      arr.forEach((d: any) => {
-        let s = d?.source?.name as any;
-        if (s) {
-          sources.push(s.toLowerCase());
-        }
-      });
-    });
-  }
+    if (newsArticles) {
+        Object.values(newsArticles).forEach((arr) => {
+            arr.forEach((d: any) => {
+                let s = d?.source?.name as any;
+                if (s) {
+                    sources.push(s.toLowerCase());
+                }
+            });
+        });
+    }
 
-  console.debug({ sources: new Set(sources) });
-
-  return (
-    <div style={{ height: "100vh", width: "90vw" }}>
-      <Typography
-        variant="h3"
-        color="textPrimary"
-        sx={{
-          padding: ["0.4em", "1em"],
-          fontSize: ["24pt", "30pt", "36pt"],
-        }}
-      >
-        Your daily News!
-      </Typography>
-      <StatWrapper>
-        {/* <SearchInput
+    return (
+        <div style={{ height: "100vh", width: "90vw" }}>
+            <Typography
+                variant="h3"
+                color="textPrimary"
+                sx={{
+                    padding: ["0.4em", "1em"],
+                    fontSize: ["24pt", "30pt", "36pt"],
+                }}
+            >
+                Your daily News!
+            </Typography>
+            <StatWrapper>
+                {/* <SearchInput
             searchValue={searchValue}
             onSearchValue={onSearchValue}
           /> */}
-        <ColorToggleButton category={category} setCategory={setCategory} />
-      </StatWrapper>
+                <ColorToggleButton
+                    category={category}
+                    setCategory={setCategory}
+                />
+            </StatWrapper>
 
-      <List
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "1em",
-        }}
-      >
-        {error && (
-          <Typography style={{ gridRow: "span 1 / -1" }}>
-            Something Went Wrong! Please try again later.
-          </Typography>
-        )}
-        {isLoading &&
-          Array(6)
-            .fill(1)
-            .map((i: any, idx) => (
-              <Skeleton
-                key={idx}
-                variant="rectangular"
-                height={300}
-                width={345}
-              />
-            ))}
+            <List
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "1em",
+                }}
+            >
+                {error && (
+                    <Typography style={{ gridRow: "span 1 / -1" }}>
+                        Something Went Wrong! Please try again later.
+                    </Typography>
+                )}
+                {isLoading &&
+                    Array(6)
+                        .fill(1)
+                        .map((i: any, idx) => (
+                            <Skeleton
+                                key={idx}
+                                variant="rectangular"
+                                height={300}
+                                width={345}
+                            />
+                        ))}
 
-        {data.map((news: any) => (
-          <NewsItem data={news} key={news.title} />
-        ))}
+                {data.map((news: any) => (
+                    <NewsItem data={news} key={news.title} />
+                ))}
 
-        {data && data.length === 0 && (
-          <Typography style={{ gridRow: "span 1 / -1" }}>
-            No results found! Try a different search.
-          </Typography>
-        )}
-      </List>
-    </div>
-  );
+                {data && data.length === 0 && (
+                    <Typography style={{ gridRow: "span 1 / -1" }}>
+                        No results found! Try a different search.
+                    </Typography>
+                )}
+            </List>
+        </div>
+    );
 };
 
 export default Dashboard;

@@ -1,11 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 import {
-    Button,
     Divider,
     List,
     ListItemButton,
@@ -13,6 +8,11 @@ import {
     Slider,
     Typography,
 } from "@mui/material";
+import { Categories } from "../dashboard/CategorySelect";
+import newsArticles from "src/assets/news_articles";
+import { TabContext, TabPanel } from "@mui/lab";
+import NewsItem from "../dashboard/NewsItem";
+import DotsMobileStepper from "./Stepper";
 interface IPreLandingProps {}
 
 const marks = [
@@ -40,66 +40,113 @@ const marks = [
 ];
 
 const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
-    const [value, setValue] = React.useState("1");
+    // Variable states
+    const [category, setCategory] = useState<string>(Categories.Health);
+    const [activeStep, setActiveStep] = React.useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        setValue(newValue);
-    };
+    // http endpoint builder
+    // const endpointPath = httpClient.getEndpoint(
+    //   apiEndpoints.topHeadlines.path,
+    //   {
+    //     queryParams: {
+    //       country: "us",
+    //       category: `${category}`,
+    //     },
+    //   }
+    // );
+
+    // React query fetch
+    // const { isLoading, error, data } = useInternalQuery(
+    //   "newsData",
+    //   endpointPath
+    // );
+
+    //  const { isLoading, data, error } = useQuery(
+    //    category,
+    //    () => fetch(endpointPath).then((res) => res.json())
+    //  );
+
+    const data: any = React.useMemo(
+        () => (newsArticles as any)?.[category],
+        [category]
+    );
+    let sources: any = [];
+
+    if (newsArticles) {
+        Object.values(newsArticles).forEach((arr) => {
+            arr.forEach((d: any) => {
+                let s = d?.source?.name as any;
+                if (s) {
+                    sources.push(s.toLowerCase());
+                }
+            });
+        });
+    }
+
     const valuetext = (value: number) => {
         return `${value}%`;
     };
-
+    console.debug(activeStep);
     return (
-        <Paper sx={{ padding: ["1em"], width: "90vw", margin: "1em auto" }}>
+        <Paper
+            sx={{
+                width: ["100vw", "400px", "500px"],
+                margin: "1em auto",
+            }}
+        >
             <Box sx={{ width: "100%", typography: "body1" }}>
-                <TabContext value={value}>
-                    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                        <TabList
-                            variant="fullWidth"
-                            onChange={handleChange}
-                            aria-label="news-study-tabs"
-                        >
-                            <Tab label="Select News Category" value="1" />
-                            <Tab label="Select Sub-Category" value="2" />
-                            <Tab label="View News" value="3" />
-                        </TabList>
-                    </Box>
-                    <TabPanel value="1">
+                <TabContext value={(activeStep + 1).toString()}>
+                    <TabPanel
+                        value="1"
+                        sx={{ padding: 0, margin: 0, height: "90vh" }}
+                    >
+                        <Typography variant="h6" style={{ padding: "1em" }}>
+                            Choose a topic you would like most
+                        </Typography>
                         <List>
-                            <ListItemButton>Health</ListItemButton>
-
+                            <ListItemButton color="secondary">
+                                Health
+                            </ListItemButton>
                             <ListItemButton>Politics</ListItemButton>
                             <ListItemButton>Sports</ListItemButton>
                         </List>
                     </TabPanel>
-                    <TabPanel value="2">
-                        <List>
-                            <ListItemButton>News1</ListItemButton>
 
-                            <ListItemButton>News2</ListItemButton>
-                        </List>
+                    <TabPanel value="2" sx={{ padding: 0, margin: 0 }}>
+                        <Typography variant="h6" style={{ padding: "1em" }}>
+                            Select a news you would prefer
+                        </Typography>
+                        <ListItemButton dense disableGutters>
+                            <NewsItem data={data[0]} />
+                        </ListItemButton>
+
+                        <ListItemButton dense disableGutters>
+                            <NewsItem data={data[1]} />
+                        </ListItemButton>
                     </TabPanel>
-                    <TabPanel value="3">
-                        <Typography style={{ padding: "1em 0px" }}>
-                            News details
-                        </Typography>
-                        <Typography style={{ padding: "1em 0px" }}>
-                            News details
-                        </Typography>{" "}
-                        <Typography style={{ padding: "1em 0px" }}>
-                            News details
-                        </Typography>{" "}
-                        <Typography style={{ padding: "1em 0px" }}>
-                            News details
-                        </Typography>{" "}
-                        <Typography style={{ padding: "1em 0px" }}>
-                            News details
-                        </Typography>{" "}
-                        <Typography style={{ padding: "1em 0px" }}>
-                            News details
-                        </Typography>
+
+                    <TabPanel
+                        value="3"
+                        sx={{
+                            padding: 0,
+                            margin: 0,
+                        }}
+                    >
+                        <NewsItem data={data[5]} />
+                        <NewsItem data={data[6]} />
+                        <NewsItem data={data[7]} />
+                        <NewsItem data={data[8]} />
+
                         <Divider />
-                        <Paper sx={{ marginTop: "2em" }}>
+                        <Paper
+                            sx={{
+                                marginTop: "2em",
+                                padding: "0px 3em",
+                                position: "sticky",
+                                bottom: 0,
+                                boxShadow: "0px 0px 3px 1px gray",
+                            }}
+                        >
                             <Typography
                                 id="input-slider"
                                 gutterBottom
@@ -123,6 +170,10 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
                     </TabPanel>
                 </TabContext>
             </Box>
+            <DotsMobileStepper
+                activeStep={activeStep}
+                setActiveStep={setActiveStep}
+            />
         </Paper>
     );
 };
