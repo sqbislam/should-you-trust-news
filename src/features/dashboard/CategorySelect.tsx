@@ -6,8 +6,9 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { mapObject } from "src/core/utils/helpers";
 
 export const Categories = {
-  Business: "business",
-  Health: "health",
+  Politics: "politics",
+  Economy: "economy",
+  Technology: "technology",
 };
 
 export default function CategorySelect(props: any) {
