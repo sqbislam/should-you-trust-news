@@ -15,7 +15,15 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
   data,
   isFullLinkVisible,
 }) => {
-  const { author, title, source, description, content, url, urlToImage } = data;
+  const {
+    author = "",
+    title,
+    source,
+    description,
+    content,
+    url,
+    urlToImage = "",
+  } = data;
 
   // function addDefaultSrc(ev: any) {
   //   ev.target.onerror = null; // prevents looping
@@ -53,10 +61,13 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
           >
             {title}
           </Typography>
-          <p
-            dangerouslySetInnerHTML={{ __html: author }}
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
             style={{ textAlign: "initial" }}
-          />
+          >
+            {author}
+          </Typography>
           <Typography
             variant="caption"
             color="text.secondary"

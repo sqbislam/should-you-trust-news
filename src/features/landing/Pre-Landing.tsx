@@ -46,9 +46,10 @@ enum Type {
 
 const filterData = (currPro: any, currCon: any, type: any, strength: any) => {
   let output = [];
+
   switch (strength) {
     case 0:
-      for (let i = 0; i < 4; i += 1) {
+      for (let i = 0; i < 3; i += 1) {
         const random_boolean = Math.random() < 0.5;
         if (type === Type.Pro) {
           if (random_boolean) {
@@ -102,7 +103,9 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
   const [category, setCategory] = useState<string>(Categories.Technology);
   const [type, setType] = useState<Type>(Type.Pro);
   const [activeStep, setActiveStep] = React.useState(0);
-  const [currStrength, setCurrStrength] = React.useState<number | number[]>();
+  const [currStrength, setCurrStrength] = React.useState<number | number[]>(
+    100
+  );
 
   // http endpoint builder
   // const endpointPath = httpClient.getEndpoint(
@@ -213,7 +216,8 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
               margin: 0,
             }}
           >
-            {allData && allData.map((news: any) => <NewsItem data={news} />)}
+            {allData &&
+              allData.map((news: any) => news && <NewsItem data={news} />)}
             <Divider />
             <Paper
               sx={{
