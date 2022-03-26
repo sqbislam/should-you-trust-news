@@ -198,14 +198,18 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
               Click on a news that catches your attention.
             </Typography>
             {currPro && (
-              <div onClick={handleTypeSelection(Type.Pro)}>
-                <NewsItem data={currPro[0]} isFullLinkVisible={true} />
-              </div>
+              <NewsItem
+                data={currPro[0]}
+                isFullLinkVisible={true}
+                onClick={handleTypeSelection(Type.Pro)}
+              />
             )}
             {currCon && (
-              <div onClick={handleTypeSelection(Type.Con)}>
-                <NewsItem data={currCon[0]} isFullLinkVisible={true} />
-              </div>
+              <NewsItem
+                data={currCon[0]}
+                isFullLinkVisible={true}
+                onClick={handleTypeSelection(Type.Con)}
+              />
             )}
           </TabPanel>
 
@@ -222,7 +226,7 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
             <Paper
               sx={{
                 marginTop: "2em",
-                padding: "0px 3em",
+                padding: "0px 2em",
                 position: "sticky",
                 bottom: 0,
                 boxShadow: "0px 0px 3px 1px gray",
@@ -242,6 +246,7 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
                 defaultValue={100}
                 getAriaValueText={valuetext}
                 step={50}
+                size="small"
                 onChangeCommitted={onStrengthCommited}
                 marks={marks}
                 min={0}

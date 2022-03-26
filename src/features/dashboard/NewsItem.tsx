@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Typography,
@@ -10,11 +11,13 @@ import { truncateString } from "src/core/utils/helpers";
 interface INewsItemProps {
   data?: any;
   isFullLinkVisible?: boolean;
+  onClick?: any;
 }
 
 const NewsItem: React.FunctionComponent<INewsItemProps> = ({
   data,
   isFullLinkVisible,
+  onClick,
 }) => {
   const {
     author = "",
@@ -42,6 +45,7 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
         gridTemplateColumns: ["1fr 2fr", "1fr 2fr"],
         gridTemplateRows: ["auto", "auto", "1fr"],
         marginRight: "auto",
+        marginTop: "1em",
       }}
     >
       <CardMedia
@@ -84,15 +88,15 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
           </Typography>
         </div>
       </CardContent>
-      {/* <CardActions style={{ marginTop: "auto" }}>
-                <fieldset>
-                    <Typography>{source?.name}</Typography>
-                    <Typography>{"Established In: 1800"}</Typography>
-                    <Typography>
-                        {"Subscribers (monthly): 1,000,232"}
-                    </Typography>
-                </fieldset>
-            </CardActions> */}
+      <span />
+
+      {onClick && (
+        <CardActions style={{ marginLeft: "auto" }}>
+          <Button color="primary" variant="contained" onClick={onClick}>
+            Select
+          </Button>
+        </CardActions>
+      )}
     </Card>
   );
 };
