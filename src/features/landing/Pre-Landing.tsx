@@ -44,11 +44,65 @@ enum Type {
   Con = "con",
 }
 
+const filterData = (currPro: any, currCon: any, type: any, strength: any) => {
+  let output = [];
+  switch (strength) {
+    case 0:
+      for (let i = 0; i < 4; i += 1) {
+        const random_boolean = Math.random() < 0.5;
+        if (type === Type.Pro) {
+          if (random_boolean) {
+            output.push(currPro[i]);
+          } else {
+            output.push(currCon[i]);
+          }
+        }
+        if (type === Type.Con) {
+          if (random_boolean) {
+            output.push(currCon[i]);
+          } else {
+            output.push(currPro[i]);
+          }
+        }
+      }
+      break;
+
+    case 50:
+      for (let i = 0; i < 4; i += 1) {
+        const random_boolean = Math.random() < 0.5;
+        if (type === Type.Pro) {
+          if (random_boolean) {
+            output.push(currPro[i]);
+          } else {
+            output.push(currCon[i]);
+          }
+        }
+        if (type === Type.Con) {
+          if (random_boolean) {
+            output.push(currCon[i]);
+          } else {
+            output.push(currPro[i]);
+          }
+        }
+      }
+      break;
+    case 100:
+      if (type === Type.Pro) {
+        output = currPro;
+      } else {
+        output = currCon;
+      }
+      break;
+  }
+  return output;
+};
+
 const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
   // Variable states
   const [category, setCategory] = useState<string>(Categories.Technology);
   const [type, setType] = useState<Type>(Type.Pro);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [currStrength, setCurrStrength] = React.useState<number | number[]>();
 
   // http endpoint builder
   // const endpointPath = httpClient.getEndpoint(
@@ -97,12 +151,18 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
   const valuetext = (value: number) => {
     return `${value}%`;
   };
+  const onStrengthCommited = (
+    event: Event | React.SyntheticEvent<Element, Event>,
+    value: number | number[]
+  ) => {
+    setCurrStrength(value);
+  };
 
   const currData = data;
   const currPro = currData?.pro;
   const currCon = currData?.con;
-  const allData = type === Type.Pro ? currPro : currCon;
-  console.debug({ activeStep, currData, allData, type });
+  const allData = filterData(currPro, currCon, type, currStrength) as any;
+  console.debug({ activeStep, currData, allData, type, currStrength });
   return (
     <Paper
       sx={{
@@ -178,6 +238,7 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
                 defaultValue={100}
                 getAriaValueText={valuetext}
                 step={50}
+                onChangeCommitted={onStrengthCommited}
                 marks={marks}
                 min={0}
                 max={100}
