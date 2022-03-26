@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import * as React from "react";
+import { truncateString } from "src/core/utils/helpers";
 interface INewsItemProps {
   data?: any;
   isFullLinkVisible?: boolean;
@@ -73,7 +74,7 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
             color="text.secondary"
             style={{ textAlign: "initial" }}
           >
-            {description}
+            {truncateString(description, 100)}
 
             {isFullLinkVisible && (
               <a href={url} target="_blank" rel="noopener noreferrer">
