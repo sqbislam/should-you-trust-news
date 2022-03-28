@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import * as React from "react";
-import { truncateString } from "src/core/utils/helpers";
 interface INewsItemProps {
   data?: any;
   isFullLinkVisible?: boolean;
@@ -22,9 +21,7 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
   const {
     author = "",
     title,
-    source,
-    description,
-    content,
+
     url,
     urlToImage = "",
   } = data;
@@ -60,29 +57,35 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
         <div>
           <Typography
             gutterBottom
-            variant="h6"
+            variant="subtitle1"
             component="div"
             style={{ textAlign: "initial" }}
           >
             {title}
           </Typography>
           <Typography
-            variant="subtitle1"
+            variant="caption"
             color="text.secondary"
             style={{ textAlign: "initial" }}
           >
             {author}
           </Typography>
-          <Typography
+          {/* <Typography
             variant="caption"
             color="text.secondary"
             style={{ textAlign: "initial" }}
           >
             {truncateString(description, 100)}
-
+          </Typography> */}
+          <Typography>
             {isFullLinkVisible && (
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                <Button size="small">Full Article</Button>
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: "10pt" }}
+              >
+                Full Article
               </a>
             )}
           </Typography>

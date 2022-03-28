@@ -44,12 +44,33 @@ enum Type {
   Con = "con",
 }
 
+function shuffle(array: any) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
 const filterData = (currPro: any, currCon: any, type: any, strength: any) => {
   let output = [];
+  let proMax = currPro.length;
+  let conMax = currCon.length;
 
   switch (strength) {
     case 0:
-      for (let i = 0; i < 3; i += 1) {
+      for (let i = 0; i < Math.min(proMax, conMax); i += 1) {
         const random_boolean = Math.random() < 0.5;
         if (type === Type.Pro) {
           if (random_boolean) {
@@ -69,17 +90,21 @@ const filterData = (currPro: any, currCon: any, type: any, strength: any) => {
       break;
 
     case 50:
-      for (let i = 0; i < 4; i += 1) {
+      for (let i = 0; i < Math.min(proMax, conMax); i += 1) {
         const random_boolean = Math.random() < 0.5;
         if (type === Type.Pro) {
-          if (random_boolean) {
+          if (i < 2) {
+            output.push(currPro[i]);
+          } else if (random_boolean) {
             output.push(currPro[i]);
           } else {
             output.push(currCon[i]);
           }
         }
         if (type === Type.Con) {
-          if (random_boolean) {
+          if (i < 2) {
+            output.push(currCon[i]);
+          } else if (random_boolean) {
             output.push(currCon[i]);
           } else {
             output.push(currPro[i]);
@@ -95,7 +120,7 @@ const filterData = (currPro: any, currCon: any, type: any, strength: any) => {
       }
       break;
   }
-  return output;
+  return shuffle(output);
 };
 
 const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
@@ -200,14 +225,14 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
             {currPro && (
               <NewsItem
                 data={currPro[0]}
-                isFullLinkVisible={true}
+                isFullLinkVisible={false}
                 onClick={handleTypeSelection(Type.Pro)}
               />
             )}
             {currCon && (
               <NewsItem
                 data={currCon[0]}
-                isFullLinkVisible={true}
+                isFullLinkVisible={false}
                 onClick={handleTypeSelection(Type.Con)}
               />
             )}
@@ -221,7 +246,10 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
             }}
           >
             {allData &&
-              allData.map((news: any) => news && <NewsItem data={news} />)}
+              allData.map(
+                (news: any) =>
+                  news && <NewsItem data={news} isFullLinkVisible={true} />
+              )}
             <Divider />
             <Paper
               sx={{
