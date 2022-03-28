@@ -539,7 +539,7 @@ const newsArticles = {
       {
         source: { id: "wsj", name: "The Wall Street Journal" },
         author: "Kara Dapena",
-        title: "Pandemic Drove Huge Digital Economy Boom — And It’s Not Done",
+        title: "Gas Prices Shoot Up at Fastest Rate on Record",
         description:
           "Prices for gasoline have soared across the U.S., but filling up isn’t so pricey historically after taking inflation and fuel-economy improvements into account",
         url: "https://www.wsj.com/amp/articles/gasoline-prices-shoot-up-at-fastest-rate-on-record-11647957303",
