@@ -19,7 +19,7 @@ interface IPreLandingProps {}
 const marks = [
   {
     value: 0,
-    label: "No Filter",
+    label: "Least close",
   },
   //   {
   //     value: 25,
@@ -27,7 +27,7 @@ const marks = [
   //   },
   {
     value: 50,
-    label: "Moderate",
+    label: "Moderately",
   },
   //   {
   //     value: 75,
@@ -36,7 +36,7 @@ const marks = [
 
   {
     value: 100,
-    label: "Max",
+    label: "Closely related",
   },
 ];
 enum Type {
@@ -218,7 +218,26 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
             </List>
           </TabPanel>
 
-          <TabPanel value="2" sx={{ padding: 0, margin: 0 }}>
+          <TabPanel value="2" sx={{ padding: 0, margin: 0, height: "90vh" }}>
+            <List style={{ padding: "5em 1em" }}>
+              <Typography variant="subtitle1">
+                In the next page, you have to select one article from a choice
+                of two articles. Select the article that you are most likely to
+                click if you saw it on your newsfeed. Depending on your choice,
+                we will first show you news that are related.
+              </Typography>
+              <br />
+              <br />
+              <Typography>
+                You will be able to change the strength of the recommendation
+                with a “slider”. Please take note of how changing the slider
+                affects what news articles you are shown and how it affects your
+                perspective of current events.
+              </Typography>
+            </List>
+          </TabPanel>
+
+          <TabPanel value="3" sx={{ padding: 0, margin: 0 }}>
             <Typography variant="h6" style={{ padding: "1em" }}>
               Click on a news that catches your attention.
             </Typography>
@@ -239,7 +258,7 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
           </TabPanel>
 
           <TabPanel
-            value="3"
+            value="4"
             sx={{
               padding: 0,
               margin: 0,
@@ -254,25 +273,36 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
             <Paper
               sx={{
                 marginTop: "2em",
-                padding: "0px 2em",
+                padding: "10px 2em",
+                paddingBottom: "1em",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
                 position: "sticky",
                 bottom: 0,
-                boxShadow: "0px 0px 3px 1px gray",
+                backgroundImage: "black",
+                backgroundColor: "black",
               }}
             >
-              <Typography
-                id="input-slider"
-                gutterBottom
-                variant="caption"
-                color="textSecondary"
-              >
-                Recommender Strength
+              <Typography variant="caption" color="text.secondary">
+                News related to your selection
               </Typography>
               <Slider
                 id="input-slider"
                 aria-label="input-slider"
                 defaultValue={100}
                 getAriaValueText={valuetext}
+                sx={{
+                  width: "90%",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  "& .MuiSlider-markLabel": {
+                    width: "50px",
+                    whiteSpace: "normal",
+                    fontSize: "9pt",
+                  },
+                }}
                 step={50}
                 size="small"
                 onChangeCommitted={onStrengthCommited}

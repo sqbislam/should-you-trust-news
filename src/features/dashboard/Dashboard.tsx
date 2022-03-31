@@ -2,8 +2,6 @@ import { Skeleton, styled, Typography } from "@mui/material";
 import List from "@mui/material/List";
 import React, { useState } from "react";
 import { Categories } from "./CategorySelect";
-import NewsItem from "./NewsItem";
-import newsArticles from "../../assets/news_articles";
 import ColorToggleButton from "./ToggleButton";
 
 interface IDashboardProps {}
@@ -46,11 +44,11 @@ const Dashboard: React.FunctionComponent<IDashboardProps> = (props) => {
   //    () => fetch(endpointPath).then((res) => res.json())
   //  );
 
-  const data: any = React.useMemo(
-    () => (newsArticles as any)?.[category],
-    [category]
-  );
-  let sources: any = [];
+  // const data: any = React.useMemo(
+  //   () => (newsArticles as any)?.[category],
+  //   [category]
+  // );
+  // let sources: any = [];
 
   return (
     <div style={{ height: "100vh", width: "90vw" }}>

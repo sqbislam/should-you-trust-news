@@ -7,27 +7,31 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "src/core/routes/routes";
 interface Props {
-  activeStep: number;
-  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+  activeStep?: number | null;
+  setActiveStep: any;
   steps?: number;
 }
 export default function DotsMobileStepper(props: Props) {
-  const { activeStep, setActiveStep, steps = 3 } = props as any;
+  const { activeStep = 0, setActiveStep, steps = 4 } = props as any;
   const theme = useTheme();
   const navigate = useNavigate();
   const [isDisabled, setDisabled] = React.useState(true);
   let timeout: any = React.useRef(undefined);
   React.useEffect(() => {
-    if (activeStep === steps - 1) {
+    if (activeStep === steps - 1 || activeStep === 1) {
       if (timeout.current === undefined) {
         timeout.current = setTimeout(() => {
           setDisabled(false);
-        }, 6000);
+        }, 4000);
       }
     }
   }, [activeStep, steps]);
   const handleNext = () => {
-    navigate(AppRoutes.postSurvey.path);
+    if (activeStep === steps - 1) {
+      navigate(AppRoutes.postSurvey.path);
+    } else {
+      setActiveStep((step: any) => step + 1);
+    }
   };
 
   const handleBack = () => {
@@ -42,12 +46,8 @@ export default function DotsMobileStepper(props: Props) {
       activeStep={activeStep}
       sx={{ flexGrow: 1, width: "100%", margin: 0, padding: "0.5em 0px" }}
       nextButton={
-        activeStep === steps - 1 ? (
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep !== steps - 1 || isDisabled}
-          >
+        activeStep === steps - 1 || activeStep === 1 ? (
+          <Button size="small" onClick={handleNext} disabled={isDisabled}>
             Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />

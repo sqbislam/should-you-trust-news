@@ -39,7 +39,7 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
         margin: "1em 0px",
         padding: ["0px", "0px"],
         gridGap: "1em",
-        gridTemplateColumns: ["1fr 2fr", "1fr 2fr"],
+        gridTemplateColumns: ["1fr 3fr", "1fr 3fr"],
         gridTemplateRows: ["auto", "auto", "1fr"],
         marginRight: "auto",
         marginTop: "1em",
