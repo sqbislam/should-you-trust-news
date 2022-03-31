@@ -19,7 +19,7 @@ interface IPreLandingProps {}
 const marks = [
   {
     value: 0,
-    label: "Least close",
+    label: "Least related",
   },
   //   {
   //     value: 25,
@@ -27,7 +27,7 @@ const marks = [
   //   },
   {
     value: 50,
-    label: "Moderately",
+    label: "Moderately related",
   },
   //   {
   //     value: 75,
@@ -70,23 +70,13 @@ const filterData = (currPro: any, currCon: any, type: any, strength: any) => {
 
   switch (strength) {
     case 0:
-      for (let i = 0; i < Math.min(proMax, conMax); i += 1) {
-        const random_boolean = Math.random() < 0.5;
-        if (type === Type.Pro) {
-          if (random_boolean) {
-            output.push(currPro[i]);
-          } else {
-            output.push(currCon[i]);
-          }
-        }
-        if (type === Type.Con) {
-          if (random_boolean) {
-            output.push(currCon[i]);
-          } else {
-            output.push(currPro[i]);
-          }
-        }
+      if (type === Type.Pro) {
+        output = currCon;
       }
+      if (type === Type.Con) {
+        output = currPro;
+      }
+
       break;
 
     case 50:
