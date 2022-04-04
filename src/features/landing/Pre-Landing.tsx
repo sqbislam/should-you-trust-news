@@ -208,17 +208,25 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
             </List>
           </TabPanel>
 
-          <TabPanel value="2" sx={{ padding: 0, margin: 0, height: "90vh" }}>
+          <TabPanel value="2" sx={{ padding: 0, margin: 0, height: "80vh" }}>
             <List style={{ padding: "5em 1em" }}>
-              <Typography variant="subtitle1">
+              <Typography
+                variant="subtitle2"
+                style={{ padding: "0.5em 0px" }}
+                color="Highlight"
+              >
+                Please read the instructions below. Thank you!
+              </Typography>
+              <br />
+              <Typography variant="body1">
                 In the next page, you have to select one article from a choice
                 of two articles. Select the article that you are most likely to
                 click if you saw it on your newsfeed. Depending on your choice,
                 we will first show you news that are related.
               </Typography>
+
               <br />
-              <br />
-              <Typography>
+              <Typography variant="caption" color="textSecondary">
                 You will be able to change the strength of the recommendation
                 with a “slider”. Please take note of how changing the slider
                 affects what news articles you are shown and how it affects your

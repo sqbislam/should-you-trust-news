@@ -4,12 +4,11 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Paper,
-  Tooltip,
   Typography,
 } from "@mui/material";
 import * as React from "react";
 import sources from "src/assets/news_sources";
+import CustomTooltip from "./CustomTooltip";
 interface INewsItemProps {
   data?: any;
   isFullLinkVisible?: boolean;
@@ -75,28 +74,7 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
           >
             {truncateString(description, 100)}
           </Typography> */}
-          {isFullLinkVisible && (
-            <Tooltip
-              disableInteractive
-              disableFocusListener
-              title={
-                <div style={{ padding: "0.5em" }}>
-                  <>
-                    <Typography
-                      variant="caption"
-                      color="textSecondary"
-                    >{`Source: ${source?.name}, Founded: ${
-                      newsSources && source
-                        ? newsSources[source?.id as any]?.establisedIn
-                        : ""
-                    }`}</Typography>
-                  </>
-                </div>
-              }
-            >
-              <Button size="small">Source</Button>
-            </Tooltip>
-          )}
+
           <Typography>
             {isFullLinkVisible && (
               <a
@@ -113,13 +91,31 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
       </CardContent>
       <span />
 
-      {onClick && (
-        <CardActions style={{ marginLeft: "auto" }}>
+      <CardActions style={{ marginLeft: "auto" }}>
+        {isFullLinkVisible && (
+          <CustomTooltip
+            title={
+              <div style={{ padding: "0.5em" }}>
+                <>
+                  <Typography
+                    variant="caption"
+                    color="textSecondary"
+                  >{`Source: ${source?.name}, Founded: ${
+                    newsSources && source
+                      ? newsSources[source?.id as any]?.establisedIn
+                      : ""
+                  }`}</Typography>
+                </>
+              </div>
+            }
+          />
+        )}
+        {onClick && (
           <Button color="primary" variant="contained" onClick={onClick}>
             Select
           </Button>
-        </CardActions>
-      )}
+        )}
+      </CardActions>
     </Card>
   );
 };
