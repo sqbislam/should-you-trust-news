@@ -180,7 +180,7 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
   const currPro = currData?.pro;
   const currCon = currData?.con;
   const allData = filterData(currPro, currCon, type, currStrength) as any;
-  console.debug({ activeStep, currData, allData, type, currStrength });
+
   return (
     <Paper
       sx={{

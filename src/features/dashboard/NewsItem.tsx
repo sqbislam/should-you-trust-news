@@ -4,9 +4,12 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Paper,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import * as React from "react";
+import sources from "src/assets/news_sources";
 interface INewsItemProps {
   data?: any;
   isFullLinkVisible?: boolean;
@@ -18,18 +21,13 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
   isFullLinkVisible,
   onClick,
 }) => {
-  const {
-    author = "",
-    title,
-
-    url,
-    urlToImage = "",
-  } = data;
+  const { author = "", title, source, url, urlToImage = "" } = data;
 
   // function addDefaultSrc(ev: any) {
   //   ev.target.onerror = null; // prevents looping
   //   ev.target.src = `url(${background})`;
   // }
+  const newsSources: any = React.useMemo(() => sources, []);
   return (
     <Card
       sx={{
@@ -77,6 +75,28 @@ const NewsItem: React.FunctionComponent<INewsItemProps> = ({
           >
             {truncateString(description, 100)}
           </Typography> */}
+          {isFullLinkVisible && (
+            <Tooltip
+              disableInteractive
+              disableFocusListener
+              title={
+                <div style={{ padding: "0.5em" }}>
+                  <>
+                    <Typography
+                      variant="caption"
+                      color="textSecondary"
+                    >{`Source: ${source?.name}, Founded: ${
+                      newsSources && source
+                        ? newsSources[source?.id as any]?.establisedIn
+                        : ""
+                    }`}</Typography>
+                  </>
+                </div>
+              }
+            >
+              <Button size="small">Source</Button>
+            </Tooltip>
+          )}
           <Typography>
             {isFullLinkVisible && (
               <a
