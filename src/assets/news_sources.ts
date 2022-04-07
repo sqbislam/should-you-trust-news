@@ -51,7 +51,7 @@ const sources = {
   times: {
     establisedIn: "March 3, 1923, nited States, New York City; 99 years ago",
   },
-  "tjp-times": {
+  tjptimes: {
     establisedIn: "22 March 1897, Kioicho, Chiyoda, Tokyo; 125 years ago",
     summary:
       "The Japan Times is Japan's largest and oldest English-language daily newspaper. It is published by The Japan Times, Ltd., a subsidiary of News2u Holdings, Inc.. It is headquartered in the Kioicho Building in Kioicho, Chiyoda, Tokyo",

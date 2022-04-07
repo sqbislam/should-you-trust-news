@@ -221,8 +221,8 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
               <Typography variant="body1">
                 In the next page, you have to select one article from a choice
                 of two articles. Select the article that you are most likely to
-                click if you saw it on your newsfeed. Depending on your choice,
-                we will first show you news that are related.
+                click if you saw it on your newsfeed. We will first show you
+                news that are related to your choice.
               </Typography>
 
               <br />
@@ -262,6 +262,13 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
               margin: 0,
             }}
           >
+            <Typography variant="body1" style={{ padding: "1em" }}>
+              Press the{" "}
+              <Typography component="span" color="Highlight">
+                {"SOURCE"}
+              </Typography>{" "}
+              button for source details.
+            </Typography>
             {allData &&
               allData.map(
                 (news: any) =>
