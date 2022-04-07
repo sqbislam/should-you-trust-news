@@ -325,18 +325,42 @@ const newsArticles = {
     ],
     con: [
       {
-        source: { id: "cnn", name: "CNN" },
-        author: "Sandee LaMotte, CNN",
+        source: { id: "globaltimes", name: "Global Times" },
+        author: "Wang Wenwen and Hu Yuwei",
         title:
-          "Sleeping with even a small amount of light may harm your health, study says - CNN",
+          "US ramps up oil imports from Russia, pursues own interests at expense of European allies amid Ukraine crisis",
         description:
-          "Sleeping with the lights on, even if they were dim, was associated with poor heart health and an increased risk for diabetes, a new study found.",
-        url: "https://www.cnn.com/2022/03/14/health/sleeping-lights-danger-wellness/index.html",
+          "In a contrasting move to its pressuring of European allies to not buy Russian oil against the backdrop of the ongoing Ukraine crisis, the US increased crude oil supplies from Russia by 43 percent, or 100,000 barrels per day, over the past week, Russian Security Council Deputy Secretary Mikhail Popov told Russian media on Sunday, with critics pointing out that the US pursues its own interests at the costs of its European allies..",
+        url: "https://www.globaltimes.cn/page/202204/1257500.shtml",
         urlToImage:
-          "https://cdn.cnn.com/cnnnext/dam/assets/210813151854-deep-sleep-stock-super-tease.jpg",
-        publishedAt: "2022-03-18T00:32:31Z",
+          "https://www.globaltimes.cn/Portals/0/attachment/2022/2022-04-04/2f4e7737-ab48-4063-b6f5-38477bf2fe94.jpeg",
+        publishedAt: "2022-03-18",
         content:
-          "Sleep Awareness Week is March 13-19, and CNN's Life, But Better Sleep section will have daily tips and facts you need to get a better night's slumber. Join us!\r\n (CNN)Sleeping for only one night with… [+4626 chars]",
+          "In a contrasting move to its pressuring of European allies to not buy Russian oil against the backdrop of the ongoing Ukraine crisis, the US increased crude oil supplies from Russia by 43 percent, or 100,000 barrels per day, over the past week, Russian Security Council Deputy Secretary Mikhail Popov told Russian media on Sunday, with critics pointing out that the US pursues its own interests at the costs of its European allies.",
+      },
+      {
+        source: { id: "russiantimes", name: "Russian Times" },
+        author: "Unknown",
+        title: "Putin issues warning to West",
+        description:
+          "Russian leader responds to seizure of his country's assets abroad",
+        url: "https://www.rt.com/russia/553354-putin-issues-warning-to-west/",
+        urlToImage:
+          "https://cdni.rt.com/files/2022.04/l/624c76ae85f5407a0d078ed6.jpg",
+        publishedAt: "2022-04-05",
+      },
+      {
+        source: { id: "russiantimes", name: "Russian Times" },
+        author: "Unknown",
+        title: "Russian Ruble has defied sanctions – EU",
+        description:
+          "Josep Borrell acknowledged the resistance the Russian ruble has shown in the face of international sanctions",
+        url: "https://www.rt.com/russia/553339-russian-ruble-has-defied-sanctions/",
+        urlToImage:
+          "https://cdni.rt.com/files/2022.04/l/624c43502030273ef57de4d5.jpg",
+        publishedAt: "2022-04-05",
+        content:
+          "In a contrasting move to its pressuring of European allies to not buy Russian oil against the backdrop of the ongoing Ukraine crisis, the US increased crude oil supplies from Russia by 43 percent, or 100,000 barrels per day, over the past week, Russian Security Council Deputy Secretary Mikhail Popov told Russian media on Sunday, with critics pointing out that the US pursues its own interests at the costs of its European allies.",
       },
     ],
   },

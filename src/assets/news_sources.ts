@@ -77,6 +77,17 @@ const sources = {
     summary:
       "Yahoo! Finance is a media property that is part of the Yahoo! network. It provides financial news, data and commentary including stock quotes, press releases, financial reports, and original content. It also offers some online tools for personal finance management.",
   },
+  globaltimes: {
+    establisedIn:
+      "1993, (Chinese edition) 29 years ago; 2009, (English edition) 13 years ago; No.2 Jintai Xilu, Chaoyang District, Beijing",
+    summary:
+      "The Global Times is a daily tabloid newspaper under the auspices of the Chinese Communist Party's flagship newspaper, the People's Daily, commenting on international issues from a nationalistic perspective",
+  },
+  russiantimes: {
+    establisedIn: "April 6, 2005; 17 years ago, Moscow, Russia",
+    summary:
+      "RT is a Russian state-controlled international television network funded by the Russian government. It operates pay television or free-to-air channels directed to audiences outside of Russia, as well as providing Internet content in English, Spanish, French, German, Arabic, and Russian.",
+  },
 };
 
 export default sources;
