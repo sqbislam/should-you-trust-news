@@ -7,12 +7,11 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
-  
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
