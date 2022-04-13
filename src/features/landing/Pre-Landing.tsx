@@ -269,6 +269,14 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
               </Typography>{" "}
               button for source details.
             </Typography>
+            <Typography variant="body1" style={{ padding: "1em" }}>
+              Once you are done (scroll to the bottom) and press
+              <Typography component="span" color="Highlight">
+                {"Next"}
+              </Typography>{" "}
+              button to continue.
+            </Typography>
+
             {allData &&
               allData.map(
                 (news: any) =>

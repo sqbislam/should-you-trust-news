@@ -16,7 +16,6 @@ const PostSurvey: React.FunctionComponent<IPostSurveyProps> = (props) => {
         position: "relative",
       }}
     >
-      hellp
       <Widget
         id="OT2lJTBE"
         style={{ width: "100%", height: "100%", borderRadius: "0px" }}
