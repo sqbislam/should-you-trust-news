@@ -270,7 +270,7 @@ const PreLanding: React.FunctionComponent<IPreLandingProps> = (props) => {
               button for source details.
             </Typography>
             <Typography variant="body1" style={{ padding: "1em" }}>
-              Once you are done (scroll to the bottom) and press
+              Once you are done (scroll to the bottom) and press{" "}
               <Typography component="span" color="Highlight">
                 {"Next"}
               </Typography>{" "}
